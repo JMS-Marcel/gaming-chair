@@ -5,10 +5,9 @@ import Header from "./components/Header.vue";
 
 <template>
  
-  <div>
-    <Header/>
-    <h1>Hello!</h1>
-  </div>
+    <div>
+      <Header/>
+    </div>
   
 </template>
 
