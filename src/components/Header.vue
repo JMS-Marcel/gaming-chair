@@ -13,7 +13,13 @@ const navs = ref(navData);
     <ul class="nav">
       <li v-for="(nav) in navs" :key="nav.id
       ">
-    <RouterLink to="/">{{ nav.name }}</RouterLink>  
+    <RouterLink 
+    to="/"
+    :class="{active: nav.active}" 
+    v-if="nav.name === 'Home'">
+      <i class="bi bi-house-door-fill"></i>
+    </RouterLink>  
+    <RouterLink v-else to="/" :class="{active: nav.active}">{{ nav.name }}</RouterLink>  
     </li>
     </ul>
     <div class="features"></div>
@@ -38,10 +44,6 @@ const navs = ref(navData);
     font-weight: 800;
   }
 
-  .nav{
-    display: none;
-  }
-
   .nav li{
     list-style: none;
     margin: 0 10px;
@@ -58,7 +60,7 @@ const navs = ref(navData);
 
   .nav li:hover a,
   .nav li a.active{
-    color: var(--primary);
+    color: var(--primary) !important;
   }
   .features{
     display: flex;
