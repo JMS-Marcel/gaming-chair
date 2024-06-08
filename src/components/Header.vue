@@ -4,6 +4,14 @@ import { ref } from 'vue'
 
 const navs = ref(navData);
 
+const handleNavActive = id =>{
+  navs.value.map(nav =>{
+    nav.active = false;
+    if(nav.id === id) nav.active = true;
+    return nav;
+  });
+};
+
 </script> 
 
 <template>
@@ -11,16 +19,21 @@ const navs = ref(navData);
     <RouterLink to="/" class="logo">iChair</RouterLink>
 
     <ul class="nav">
-      <li v-for="(nav) in navs" :key="nav.id
-      ">
-    <RouterLink 
-    to="/"
-    :class="{active: nav.active}" 
-    v-if="nav.name === 'Home'">
-      <i class="bi bi-house-door-fill"></i>
-    </RouterLink>  
-    <RouterLink v-else to="/" :class="{active: nav.active}">{{ nav.name }}</RouterLink>  
-    </li>
+        <li v-for="(nav) in navs" :key="nav.id">
+            <RouterLink 
+              to="/"
+              :class="{active: nav.active}" 
+              v-if="nav.name === 'Home'"
+              @click="handleNavActive(nav.id)">
+                <i class="bi bi-house-door-fill"></i>
+            </RouterLink>  
+            <RouterLink 
+                v-else to="/" 
+                :class="{active: nav.active}"
+                @click="handleNavActive(nav.id)">
+                {{ nav.name }}
+          </RouterLink>  
+        </li>
     </ul>
     <div class="features"></div>
     
