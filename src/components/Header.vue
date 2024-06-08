@@ -1,5 +1,6 @@
 <script setup>
 import { navData } from '@/data/data';
+import Cart from '@/components/CartBtn.vue';
 import { ref } from 'vue'
 
 const navs = ref(navData);
@@ -35,7 +36,9 @@ const handleNavActive = id =>{
           </RouterLink>  
         </li>
     </ul>
-    <div class="features"></div>
+    <div class="features">
+      <Cart/>
+    </div>
     
   </header>
 </template>
