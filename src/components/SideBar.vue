@@ -1,6 +1,9 @@
 <template>
   <div class="sideBar">
-    <a href="#" class="menu">
+    <a href="#" 
+    class="menu"
+    :class="{ active : active}"
+    @click.stop.prevent="handleToggleMenu">
       <i class="bi bi-menu-app-fill"></i>
     </a>
     <ul class="sci" >
@@ -11,14 +14,23 @@
       </li>
     </ul>
   </div>
+  <SideMenu :active="active"/>
 </template>
 <script setup>
+import { ref } from 'vue';
+import SideMenu from '@/components/SideMenu.vue'
 
 const scis = [
   {id:1, icon:'bi bi-facebook'},
   {id:2, icon:'bi bi-twitter-x'},
   {id:3, icon:'bi bi-instagram'},
 ];
+
+const active = ref(false);
+
+const handleToggleMenu = () => {
+  active.value = !active.value;
+};
 
 </script>
 <style scoped>
@@ -42,7 +54,7 @@ const scis = [
   transition: ease 1s;
 }
 .menu.active{
-  transform: rotateZ(100deg);
+  transform: rotateZ(180deg);
 }
 .sci{
   padding: 0;
